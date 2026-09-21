@@ -7,6 +7,7 @@ import modelo.Estudiante;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 import java.io.Serializable;
 
 public abstract class Actividad implements Serializable {
@@ -70,6 +71,10 @@ public abstract class Actividad implements Serializable {
 
     public int getCupoMaximo() {
         return cupoMaximo;
+    }
+
+    public List<Inscripcion> getInscripciones() {
+        return Collections.unmodifiableList(inscripciones);
     }
 
 }

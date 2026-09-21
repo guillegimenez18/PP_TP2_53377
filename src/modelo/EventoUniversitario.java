@@ -2,6 +2,7 @@ package modelo;
 
 import modelo.actividades.Actividad;
 import modelo.actividades.Charla;
+import modelo.actividades.Curso;
 import modelo.actividades.Taller;
 
 import java.io.FileOutputStream;
@@ -107,6 +108,12 @@ public class EventoUniversitario implements Serializable {
         this.actividades.add(actividad);
     }
 
+    //Para crear un Curso
+    public void crearActividad(int id, String titulo, int cupoMaximo, int nivel) {
+        Actividad actividad = new Curso(id, titulo, cupoMaximo, nivel);
+        this.actividades.add(actividad);
+    }
+
     public List<Actividad> getActividades() {
         return actividades;
     }
@@ -116,7 +123,7 @@ public class EventoUniversitario implements Serializable {
         System.out.println("ID: " + id);
         System.out.println("Costo Base: $" + costoBase);
         System.out.println("Gratuito: " + (gratuito ? "Sí" : "No"));
-        System.out.println("Costo Estimado: $" + calcularCostoEstimado());
+        System.out.printf("Costo Estimado: $%.2f%n", calcularCostoEstimado());
         System.out.println("Sala asignada: " + (sala != null ? sala.getNombre() : "(sin asignar)"));
         System.out.println("Actividades: ");
         if (actividades.isEmpty()) {

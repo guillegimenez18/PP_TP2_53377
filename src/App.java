@@ -3,6 +3,8 @@ import modelo.Estudiante;
 import modelo.EventoUniversitario;
 import modelo.Sala;
 import modelo.actividades.Actividad;
+import modelo.Inscripcion;
+import modelo.certificacion.Certificable;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class App {
         System.out.println("Total de eventos creados hasta ahora: " + EventoUniversitario.getCantidadEventos());
 
         // ===== EJERCICIO 2 =====
-        System.out.println("\n=========== EJERCICIO 2 y 3 ===========");
+        System.out.println("\n=========== EJERCICIO 1: excepciones y persistencia ===========");
 
         // lista de estudiantes
         List<Estudiante> estudiantes = new ArrayList<>();
@@ -42,7 +44,6 @@ public class App {
         evento2.crearActividad(1, "Introducción a Java", 2, "Guillermina Giménez");   // Charla
         evento2.crearActividad(2, "Uso de Git", 5, true);
 
-        // se inscriben estudiantes en cada actividad
         List<Actividad> actividadesEvento2 = evento2.getActividades();
         Actividad taller = actividadesEvento2.get(1);
         Actividad charla = actividadesEvento2.get(0);
@@ -70,6 +71,8 @@ public class App {
         flujoInscribirPersistirLeer(evento2, taller, estudiantes.get(0), "NOEXISTE");
 
         System.out.println("\nTotal de eventos creados: " + EventoUniversitario.getCantidadEventos());
+
+        ejercicio2();
     }
 
     private static void flujoInscribirPersistirLeer(EventoUniversitario evento, Actividad actividad,
@@ -99,5 +102,81 @@ public class App {
         } finally {
             System.out.println("Fin del intento para " + estudiante.getNombre() + ".");
         }
+    }
+
+    private static void ejercicio2() {
+        System.out.println("\n=========== EJERCICIO 2: CERTIFICADOS ===========");
+
+        //se crean estudiantes
+        List<Estudiante> estudiantes = new ArrayList<>();
+        estudiantes.add(new Estudiante("53377", "Guillermina Giménez"));
+        estudiantes.add(new Estudiante("53388", "Florencia Sosa"));
+        estudiantes.add(new Estudiante("53399", "Guadalupe Vargas"));
+
+        //se crean eventos
+        EventoUniversitario evento3 = new EventoUniversitario("E3", "Semana de la Ingeniería", 10000.0, false);
+        EventoUniversitario evento4 = new EventoUniversitario("E4", "Jornada de Innovación", 12000.0, false);
+
+        //se asigna una sala a cada evento
+        evento3.asignarSala(new Sala(2, "Aula 101"));
+        evento4.asignarSala(new Sala(3, "Laboratorio 2"));
+
+        //se crean actividades (la última es un Curso)
+        evento3.crearActividad(1, "Charla de Bienvenida", 30, "Dr. López");
+        evento3.crearActividad(2, "Taller de Git", 20, true);
+        evento3.crearActividad(3, "Curso de Java Básico", 15, 1);
+
+        evento4.crearActividad(1, "Charla de Inteligencia Artificial", 30, "Dra. Gómez");
+        evento4.crearActividad(2, "Taller de html", 20, false);
+        evento4.crearActividad(3, "Curso de Estadística", 15, 2);
+
+        //se inscriben alumnos en todas las actividades
+        for (Actividad actividad : evento3.getActividades()) {
+            inscribirSeguro(actividad, estudiantes.get(0));
+            inscribirSeguro(actividad, estudiantes.get(1));
+        }
+        for (Actividad actividad : evento4.getActividades()) {
+            inscribirSeguro(actividad, estudiantes.get(1));
+            inscribirSeguro(actividad, estudiantes.get(2));
+        }
+
+        //se emiten los certificados (las charlas no son certificables)
+        List<String> certificados = new ArrayList<>();
+        certificados.addAll(emitirCertificados(evento3));
+        certificados.addAll(emitirCertificados(evento4));
+
+        //se muestran los certificados emitidos
+        System.out.println("\n--- Certificados emitidos ---");
+        for (String certificado : certificados) {
+            System.out.println(certificado);
+        }
+        System.out.println("Total de certificados emitidos: " + certificados.size());
+
+        // se muestran los datos de los eventos creados
+        System.out.println("\n--- Datos de los eventos ---");
+        evento3.mostrarDatos();
+        System.out.println();
+        evento4.mostrarDatos();
+    }
+
+    private static void inscribirSeguro(Actividad actividad, Estudiante estudiante) {
+        try {
+            actividad.inscribir(estudiante);
+            System.out.println("Inscripto: " + estudiante.getNombre() + " en " + actividad.getTitulo());
+        } catch (CupoExcedidoException e) {
+            System.out.println("[ERROR DE CUPO] " + e.getMessage());
+        }
+    }
+
+    private static List<String> emitirCertificados(EventoUniversitario evento) {
+        List<String> certificados = new ArrayList<>();
+        for (Actividad actividad : evento.getActividades()) {
+            if (actividad instanceof Certificable certificable) {
+                for (Inscripcion inscripcion : actividad.getInscripciones()) {
+                    certificados.add(certificable.generarCertificado(inscripcion.getEstudiante()));
+                }
+            }
+        }
+        return certificados;
     }
 }

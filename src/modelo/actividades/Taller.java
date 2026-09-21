@@ -1,6 +1,9 @@
 package modelo.actividades;
 
-public class Taller extends Actividad {
+import modelo.certificacion.Certificable;
+import modelo.Estudiante;
+
+public class Taller extends Actividad implements Certificable {
     private static final long serialVersionUID = 1L;
 
     private boolean requiereNotebook;
@@ -23,4 +26,8 @@ public class Taller extends Actividad {
         return requiereNotebook;
     }
 
+    @Override
+    public String generarCertificado(Estudiante estudiante){
+        return "Certificado de asistencia (" + ENTIDAD_EMISORA + "): " + estudiante.getNombre() + " - legajo: " + estudiante.getLegajo() + " - participó en el taller: \"" + getTitulo() + "\".";
+    }
 }
