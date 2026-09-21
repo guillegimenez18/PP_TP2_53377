@@ -1,0 +1,8 @@
+# Clases compiladas (IntelliJ las regenera)
+out/
+
+# Archivos que genera el programa al ejecutarse
+*.dat
+
+# Estado personal del editor
+.idea/workspace.xml
