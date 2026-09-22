@@ -148,4 +148,22 @@ public class EventoUniversitario implements Serializable {
         }
     }
 
+    public <T extends Actividad> List<T> filtrarActividadesPorTipo(Class<T> tipo) {
+        List<T> resultado = new ArrayList<>();
+        for (Actividad actividad : actividades) {
+            if (tipo.isInstance(actividad)) {
+                resultado.add(tipo.cast(actividad));
+            }
+        }
+        return resultado;
+    }
+
+    public double calcularCostoMateriales(List<? extends Actividad> actividades) {
+        double total = 0;
+        for (Actividad actividad : actividades) {
+            total += actividad.calcularCostoMateriales();
+        }
+        return total;
+    }
+
 }

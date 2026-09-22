@@ -4,7 +4,10 @@ import modelo.EventoUniversitario;
 import modelo.Sala;
 import modelo.actividades.Actividad;
 import modelo.Inscripcion;
+import modelo.actividades.Taller;
 import modelo.certificacion.Certificable;
+import modelo.actividades.Charla;
+import modelo.actividades.Curso;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -73,6 +76,7 @@ public class App {
         System.out.println("\nTotal de eventos creados: " + EventoUniversitario.getCantidadEventos());
 
         ejercicio2();
+        ejercicio3();
     }
 
     private static void flujoInscribirPersistirLeer(EventoUniversitario evento, Actividad actividad,
@@ -179,4 +183,49 @@ public class App {
         }
         return certificados;
     }
+    //ejercicio 3
+    private static void ejercicio3() {
+        System.out.println("\n=========== EJERCICIO 3: FILTRADO Y COSTOS ===========");
+
+        EventoUniversitario evento3 = new EventoUniversitario("E3-bis", "Semana de la Ingeniería", 10000.0, false);
+        EventoUniversitario evento4 = new EventoUniversitario("E4-bis", "Jornada de Innovación", 12000.0, false);
+
+        evento3.crearActividad(1, "Charla de Bienvenida", 30, "Dr. López");
+        evento3.crearActividad(2, "Taller de Git", 20, true);
+        evento3.crearActividad(3, "Curso de Java Básico", 15, 1);
+
+        evento4.crearActividad(1, "Charla de Inteligencia Artificial", 30, "Dra. Gómez");
+        evento4.crearActividad(2, "Taller de html", 20, false);
+        evento4.crearActividad(3, "Curso de Estadística", 15, 2);
+
+        mostrarFiltradoYCostos(evento3);
+        mostrarFiltradoYCostos(evento4);
+    }
+
+    private static void mostrarFiltradoYCostos(EventoUniversitario evento) {
+        System.out.println("\n--- " + evento.getTitulo() + " ---");
+
+        List<Charla> charlas = evento.filtrarActividadesPorTipo(Charla.class);
+        List<Taller> talleres = evento.filtrarActividadesPorTipo(Taller.class);
+        List<Curso> cursos = evento.filtrarActividadesPorTipo(Curso.class);
+
+        System.out.println("Cantidad de charlas: " + charlas.size());
+        System.out.println("Cantidad de talleres: " + talleres.size());
+        System.out.println("Cantidad de cursos: " + cursos.size());
+
+        System.out.printf("Costo materiales charlas: $%.2f%n", evento.calcularCostoMateriales(charlas));
+        System.out.printf("Costo materiales talleres: $%.2f%n", evento.calcularCostoMateriales(talleres));
+        System.out.printf("Costo materiales cursos: $%.2f%n", evento.calcularCostoMateriales(cursos));
+
+        if (!charlas.isEmpty()) {
+            System.out.println("Tipo real del primer elemento de 'charlas': " + charlas.get(0).getClass().getSimpleName());
+        }
+        if (!talleres.isEmpty()) {
+            System.out.println("Tipo real del primer elemento de 'talleres': " + talleres.get(0).getClass().getSimpleName());
+        }
+        if (!cursos.isEmpty()) {
+            System.out.println("Tipo real del primer elemento de 'cursos': " + cursos.get(0).getClass().getSimpleName());
+        }
+    }
+
 }
