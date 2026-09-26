@@ -1,0 +1,188 @@
+CAPTURA SALIDA TP 2 PP
+
+"C:\Program Files\Java\jdk-21.0.11\bin\java.exe" "-javaagent:C:\Users\victo\Desktop\IntelliJ\IntelliJ IDEA 2026.2.1\lib\idea_rt.jar=50676" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath "C:\TPS PP\PP_TP2_53377\out\production\PP_TP2_53377" App
+----------- EJERCICIO 1 -----------
+Datos del Evento: Jornada de Programación
+ID: E1
+Costo Base: $15000.0
+Gratuito: No
+Costo Estimado: $18150,00
+Sala asignada: (sin asignar)
+Actividades: 
+sin actividades
+
+----Copia del evento 1----:
+Datos del Evento: Jornada de Programación
+ID: E1
+Costo Base: $15000.0
+Gratuito: No
+Costo Estimado: $18150,00
+Sala asignada: (sin asignar)
+Actividades: 
+sin actividades
+Total de eventos creados hasta ahora: 2
+
+=========== EJERCICIO 1: excepciones y persistencia ===========
+Inicializador estático: se cargó la clase Actividad.
+Datos del Evento: Olimpiadas Matemáticas
+ID: E2
+Costo Base: $20000.0
+Gratuito: No
+Costo Estimado: $30250,00
+Sala asignada: SUM
+Actividades: 
+[Charla] Introducción a Java (id 1) - Costo materiales: $0.0
+  Inscripciones en Introducción a Java:
+sin inscriptos
+[Taller] Uso de Git (id 2) - Costo materiales: $5000.0
+  Inscripciones en Uso de Git:
+sin inscriptos
+Total de eventos creados: 3
+
+ === Caso 1: flujo exitoso ===
+Intentando inscribir a Guillermina Giménez en Introducción a Java
+Inscripción realizada.
+Evento guardado en archivo.
+Evento recuperado del archivo:
+Datos del Evento: Olimpiadas Matemáticas
+ID: E2
+Costo Base: $20000.0
+Gratuito: No
+Costo Estimado: $30250,00
+Sala asignada: SUM
+Actividades: 
+[Charla] Introducción a Java (id 1) - Costo materiales: $0.0
+  Inscripciones en Introducción a Java:
+    - Guillermina Giménez (legajo 53377) | Fecha: 2026-09-25 | Estado: Confirmada
+[Taller] Uso de Git (id 2) - Costo materiales: $5000.0
+  Inscripciones en Uso de Git:
+sin inscriptos
+Fin del intento para Guillermina Giménez.
+
+=== CASO 2: se completa el cupo ===
+Intentando inscribir a Florencia Sosa en Introducción a Java
+Inscripción realizada.
+Evento guardado en archivo.
+Evento recuperado del archivo:
+Datos del Evento: Olimpiadas Matemáticas
+ID: E2
+Costo Base: $20000.0
+Gratuito: No
+Costo Estimado: $30250,00
+Sala asignada: SUM
+Actividades: 
+[Charla] Introducción a Java (id 1) - Costo materiales: $0.0
+  Inscripciones en Introducción a Java:
+    - Guillermina Giménez (legajo 53377) | Fecha: 2026-09-25 | Estado: Confirmada
+    - Florencia Sosa (legajo 53388) | Fecha: 2026-09-25 | Estado: Confirmada
+[Taller] Uso de Git (id 2) - Costo materiales: $5000.0
+  Inscripciones en Uso de Git:
+sin inscriptos
+Fin del intento para Florencia Sosa.
+
+=== CASO 3: cupo excedido ===
+Intentando inscribir a Guadalupe Vargas en Introducción a Java
+[ERROR DE CUPO] No se pudo inscribir a Guadalupe Vargas: cupo completo en Introducción a Java.
+Fin del intento para Guadalupe Vargas.
+
+=== CASO 4: archivo inexistente ===
+Intentando inscribir a Guillermina Giménez en Uso de Git
+Inscripción realizada.
+Evento guardado en archivo.
+[ERROR DE ARCHIVO] No se pudo abrir el archivo: eventoNOEXISTE.dat (El sistema no puede encontrar el archivo especificado)
+Fin del intento para Guillermina Giménez.
+
+Total de eventos creados: 3
+
+=========== EJERCICIO 2: CERTIFICADOS ===========
+Inscripto: Guillermina Giménez en Charla de Bienvenida
+Inscripto: Florencia Sosa en Charla de Bienvenida
+Inscripto: Guillermina Giménez en Taller de Git
+Inscripto: Florencia Sosa en Taller de Git
+Inscripto: Guillermina Giménez en Curso de Java Básico
+Inscripto: Florencia Sosa en Curso de Java Básico
+Inscripto: Florencia Sosa en Charla de Inteligencia Artificial
+Inscripto: Guadalupe Vargas en Charla de Inteligencia Artificial
+Inscripto: Florencia Sosa en Taller de html
+Inscripto: Guadalupe Vargas en Taller de html
+Inscripto: Florencia Sosa en Curso de Estadística
+Inscripto: Guadalupe Vargas en Curso de Estadística
+
+--- Certificados emitidos ---
+Certificado de asistencia (UTN): Guillermina Giménez - legajo: 53377 - participó en el taller: "Taller de Git".
+Certificado de asistencia (UTN): Florencia Sosa - legajo: 53388 - participó en el taller: "Taller de Git".
+Certificado de asistencia (UTN): Guillermina Giménez - legajo: 53377 - participó en el curso: "Curso de Java Básico".
+Certificado de asistencia (UTN): Florencia Sosa - legajo: 53388 - participó en el curso: "Curso de Java Básico".
+Certificado de asistencia (UTN): Florencia Sosa - legajo: 53388 - participó en el taller: "Taller de html".
+Certificado de asistencia (UTN): Guadalupe Vargas - legajo: 53399 - participó en el taller: "Taller de html".
+Certificado de asistencia (UTN): Florencia Sosa - legajo: 53388 - participó en el curso: "Curso de Estadística".
+Certificado de asistencia (UTN): Guadalupe Vargas - legajo: 53399 - participó en el curso: "Curso de Estadística".
+Total de certificados emitidos: 8
+
+--- Datos de los eventos ---
+Datos del Evento: Semana de la Ingeniería
+ID: E3
+Costo Base: $10000.0
+Gratuito: No
+Costo Estimado: $18416,20
+Sala asignada: Aula 101
+Actividades: 
+[Charla] Charla de Bienvenida (id 1) - Costo materiales: $0.0
+  Inscripciones en Charla de Bienvenida:
+    - Guillermina Giménez (legajo 53377) | Fecha: 2026-09-25 | Estado: Confirmada
+    - Florencia Sosa (legajo 53388) | Fecha: 2026-09-25 | Estado: Confirmada
+[Taller] Taller de Git (id 2) - Costo materiales: $5000.0
+  Inscripciones en Taller de Git:
+    - Guillermina Giménez (legajo 53377) | Fecha: 2026-09-25 | Estado: Confirmada
+    - Florencia Sosa (legajo 53388) | Fecha: 2026-09-25 | Estado: Confirmada
+[Curso] Curso de Java Básico (id 3) - Costo materiales: $220.0
+  Inscripciones en Curso de Java Básico:
+    - Guillermina Giménez (legajo 53377) | Fecha: 2026-09-25 | Estado: Confirmada
+    - Florencia Sosa (legajo 53388) | Fecha: 2026-09-25 | Estado: Confirmada
+
+Datos del Evento: Jornada de Innovación
+ID: E4
+Costo Base: $12000.0
+Gratuito: No
+Costo Estimado: $17230,40
+Sala asignada: Laboratorio 2
+Actividades: 
+[Charla] Charla de Inteligencia Artificial (id 1) - Costo materiales: $0.0
+  Inscripciones en Charla de Inteligencia Artificial:
+    - Florencia Sosa (legajo 53388) | Fecha: 2026-09-25 | Estado: Confirmada
+    - Guadalupe Vargas (legajo 53399) | Fecha: 2026-09-25 | Estado: Confirmada
+[Taller] Taller de html (id 2) - Costo materiales: $2000.0
+  Inscripciones en Taller de html:
+    - Florencia Sosa (legajo 53388) | Fecha: 2026-09-25 | Estado: Confirmada
+    - Guadalupe Vargas (legajo 53399) | Fecha: 2026-09-25 | Estado: Confirmada
+[Curso] Curso de Estadística (id 3) - Costo materiales: $240.0
+  Inscripciones en Curso de Estadística:
+    - Florencia Sosa (legajo 53388) | Fecha: 2026-09-25 | Estado: Confirmada
+    - Guadalupe Vargas (legajo 53399) | Fecha: 2026-09-25 | Estado: Confirmada
+
+=========== EJERCICIO 3: FILTRADO Y COSTOS ===========
+
+--- Semana de la Ingeniería ---
+Cantidad de charlas: 1
+Cantidad de talleres: 1
+Cantidad de cursos: 1
+Costo materiales charlas: $0,00
+Costo materiales talleres: $5000,00
+Costo materiales cursos: $220,00
+Tipo real del primer elemento de 'charlas': Charla
+Tipo real del primer elemento de 'talleres': Taller
+Tipo real del primer elemento de 'cursos': Curso
+
+--- Jornada de Innovación ---
+Cantidad de charlas: 1
+Cantidad de talleres: 1
+Cantidad de cursos: 1
+Costo materiales charlas: $0,00
+Costo materiales talleres: $2000,00
+Costo materiales cursos: $240,00
+Tipo real del primer elemento de 'charlas': Charla
+Tipo real del primer elemento de 'talleres': Taller
+Tipo real del primer elemento de 'cursos': Curso
+
+Process finished with exit code 0
+

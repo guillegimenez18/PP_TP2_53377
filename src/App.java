@@ -40,8 +40,8 @@ public class App {
         EventoUniversitario evento2 = new EventoUniversitario("E2", "Olimpiadas Matemáticas", 20000.0, false);
 
         // se asigna una sala al evento
-        Sala salaMagna = new Sala(1, "Sala Magna");
-        evento2.asignarSala(salaMagna);
+        Sala salaSum = new Sala(1, "SUM");
+        evento2.asignarSala(salaSum);
 
         // se crean actividades propias del evento
         evento2.crearActividad(1, "Introducción a Java", 2, "Guillermina Giménez");   // Charla
